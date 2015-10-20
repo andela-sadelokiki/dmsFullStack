@@ -7,11 +7,8 @@ var session = require('express-session');
 var router = require('../routes/route.js');
 var config = require('./config.js');
 var bodyParser = require('body-parser');
-
 mongoose.connect(config.database);
-
 app.set('secret', config.secret);
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -21,7 +18,6 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-
 app.use('/', router);
 
 exports = module.exports = app;
