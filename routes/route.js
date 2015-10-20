@@ -3,16 +3,12 @@
 var express = require('express');
 var router = express.Router();
 var dMSController = require('../dMSController.js');
-console.log()
-
 
 router.get('/', function(req, res) {
   res.json({
     message: 'Hi! Welcome to the API'
   });
 });
-
-// module.exports = {
 router.route('/users')
   .post(dMSController.createUser)
   .get(dMSController.getAllUsers)
@@ -40,5 +36,4 @@ router.route('/documents/:id')
 router.route('/users/:id/documents')
   .get(dMSController.getAllDocumentsbyUser)
 
-// app.use('/', router);
 module.exports = router;
