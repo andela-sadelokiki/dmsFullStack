@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 require('./app/schema/userModel.js');
 require('./app/schema/documentModel.js');
 var jwt = require('jsonwebtoken');
-var db = require('./config/config.js')
+var db = require('./config/config.js');
 var User = mongoose.model('User'),
   Document = mongoose.model('Document');
 
@@ -94,12 +94,12 @@ module.exports = {
         } else {
           return res.status(401).json({
             message: 'Enter a valid password'
-          })
+          });
         }
       } else {
         return res.status(401).json({
           message: 'Username not found'
-        })
+        });
       }
     });
   },
@@ -157,7 +157,10 @@ module.exports = {
       if (err) {
         return res.status(400).json(err);
       }
-      res.status(200).json(user);
+      res.status(200).json({
+        success: true,
+        message: 'User deleted!'
+      });
     });
   },
 
@@ -169,23 +172,18 @@ module.exports = {
     User.findOne({
       username: req.body.name
     }, function(err, user) {
-      if (err) {
-        console.log('err1', err);
-      } else if (!user) {
-        console.log('found user', user);
+      if (err) {} else if (!user) {
         return res.status(400).json({
           message: 'You need to be registered to create a document'
         });
       } else {
-        console.log('user cerated', user._id);
-        userId = user._id
+        userId = user._id;
         var newDoc = new Document({
           title: req.body.title,
           ownerId: userId
         });
         newDoc.save(function(err, doc) {
           if (err) {
-            console.log('err in saving', err);
             return err;
           } else {
             return res.status(200).send(doc);
@@ -242,7 +240,6 @@ module.exports = {
         if (err) {
           return res.send(err);
         }
-        console.log('doc removed');
         res.json({
           message: 'Document successfully removed'
         });

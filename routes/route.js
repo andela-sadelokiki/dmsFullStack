@@ -4,11 +4,6 @@ var express = require('express');
 var router = express.Router();
 var dMSController = require('../dMSController.js');
 
-router.get('/', function(req, res) {
-  res.json({
-    message: 'Hi! Welcome to the API'
-  });
-});
 router.route('/users')
   .post(dMSController.createUser)
   .get(dMSController.getAllUsers)

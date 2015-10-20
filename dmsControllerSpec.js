@@ -14,10 +14,10 @@ describe('User Routes', function() {
       user.name.first = 'sade';
       user.name.last = 'abdul';
       user.email = 'sade@gmail.com';
-      user.setPassword('sade')
+      user.setPassword('sade');
       user.save(function(err, users) {
         if (err) {
-          console.log('error in saving', err);
+          return err;
         }
         done();
       });
@@ -27,7 +27,7 @@ describe('User Routes', function() {
   afterEach(function(done) {
     User.remove({}, function(err) {
       if (err) {
-        console.log('err deleting', err)
+        return err;
       }
       done();
     });
@@ -64,11 +64,10 @@ describe('User Routes', function() {
           .end(function(err, res) {
             expect(err).toBeNull();
             expect(res.body).not.toBeNull();
-            console.log('logout successful', res.body);
             expect(res.body).toEqual(jasmine.objectContaining({
               success: true,
               message: 'You are successfully logged out'
-            }))
+            }));
             done();
           });
       });
@@ -91,7 +90,7 @@ describe('User Routes', function() {
       .expect(200)
       .end(function(err, res) {
         if (err) {
-          console.log(err);
+          return err;
         }
         request
           .get('/users/' + res.body[0]._id)
@@ -108,7 +107,7 @@ describe('User Routes', function() {
     var updatedUser = {
       username: 'edited Sade',
       email: 'sade1@andela.co'
-    }
+    };
     request
       .get('/users/')
       .expect(200)
@@ -116,7 +115,6 @@ describe('User Routes', function() {
         if (err) {
           return done(err);
         }
-        // console.log(res.body);
         request
           .put('/users/' + res.body[0]._id)
           .send(updatedUser)
@@ -124,8 +122,12 @@ describe('User Routes', function() {
           .end(function(err, res) {
             expect(err).toBeNull();
             expect(res.body).not.toBeNull();
+            expect(res.body).toEqual(jasmine.objectContaining({
+              success: true,
+              message: 'User updated!'
+            }));
             done();
-          })
+          });
       });
   });
 
@@ -135,12 +137,16 @@ describe('User Routes', function() {
       .expect(200)
       .end(function(err, res) {
         if (err) {
-          console.log(err)
+          return err;
         }
         request
           .delete('/users/' + res.body[0]._id)
           .end(function(err, res) {
             expect(err).toBeNull();
+            expect(res.body).toEqual(jasmine.objectContaining({
+              success: true,
+              message: 'User deleted!'
+            }));
             done();
           });
       });
@@ -151,28 +157,24 @@ describe('User Routes', function() {
 describe('Document Routes', function() {
   beforeEach(function(done) {
     Document.remove({}).then(function() {
-      console.log('doc deleted in BE');
       User.remove({}).then(function() {
-        console.log('user deleted in BE');
         var user = new User();
         user.username = 'toba';
         user.name.first = 'toba';
         user.name.last = 'toba';
         user.email = 'toba@gmail.com';
-        user.setPassword('ahmed')
+        user.setPassword('ahmed');
         user.save(function(err, user) {
           if (err) {
-            console.log('error in saving', err);
+            return err;
           }
-          console.log('user created', user);
           var doc = new Document();
           doc.title = 'Contract';
           doc.ownerId = user.id;
           doc.save(function(err, docs) {
             if (err) {
-              console.log(err)
+              return err;
             }
-            console.log('doc created', docs);
             done();
           });
         });
@@ -182,9 +184,7 @@ describe('Document Routes', function() {
 
   afterEach(function(done) {
     User.remove({}).then(function() {
-      console.log('user deleted');
       Document.remove({}).then(function() {
-        console.log('doc deleted');
         done();
       });
     });
@@ -197,9 +197,7 @@ describe('Document Routes', function() {
       .end(function(err, res) {
         expect(err).toBeNull();
         expect(res.body).toBeDefined();
-        // console.log('response', res.body);
         expect(res.body.length).toBe(1);
-
         done();
       });
   });
@@ -210,9 +208,8 @@ describe('Document Routes', function() {
       .expect(200)
       .end(function(err, res) {
         if (err) {
-          console.log(err);
+          return err;
         }
-        console.log('response', res.body);
         request
           .get('/documents/' + res.body[0]._id)
           .expect(200)
@@ -231,18 +228,18 @@ describe('Document Routes', function() {
       .expect(200)
       .end(function(err, res) {
         if (err) {
-          console.log(err)
+          return err;
         }
         request
           .get('/users/' + res.body[0]._id + '/documents')
           .expect(200)
           .end(function(err, res) {
             if (err) {
-              console.log(err);
+              return err;
             }
             expect(err).toBeNull();
             expect(res.body).toBeDefined();
-            expect(res.body[0].title).toBe('Contract')
+            expect(res.body[0].title).toBe('Contract');
             done();
           });
       });
@@ -266,9 +263,8 @@ describe('Document Routes', function() {
           .end(function(err, res) {
             expect(err).toBeNull();
             expect(res.body).not.toBeNull();
-            console.log('response', res.body);
             done();
-          })
+          });
       });
   });
 
@@ -278,12 +274,15 @@ describe('Document Routes', function() {
       .expect(200)
       .end(function(err, res) {
         if (err) {
-          console.log(err)
+          return err;
         }
         request
-          .delete('/users/' + res.body[0]._id)
+          .delete('/documents/' + res.body[0]._id)
           .end(function(err, res) {
             expect(err).toBeNull();
+            expect(res.body).toEqual(jasmine.objectContaining({
+              message: 'Document successfully removed'
+            }));
             done();
           });
       });
@@ -294,7 +293,6 @@ describe('Document Routes', function() {
 describe('POST /users', function() {
   afterEach(function(done) {
     User.remove({}).then(function() {
-      console.log('user deleted');
       done();
     });
   });
@@ -308,7 +306,7 @@ describe('POST /users', function() {
       },
       email: 'tommy@gmail.com',
       password: 'tommy'
-    }
+    };
     request
       .post('/users')
       .set('Content-Type', 'application/json')
@@ -326,9 +324,7 @@ describe('POST /users', function() {
 describe('POST /documents', function() {
   afterEach(function(done) {
     User.remove({}).then(function() {
-      console.log('user deleted');
       Document.remove({}).then(function() {
-        console.log('document deleted');
         done();
       });
     });
@@ -341,15 +337,13 @@ describe('POST /documents', function() {
     user.name.first = 'sade';
     user.name.last = 'abdul';
     user.email = 'sade@gmail.com';
-    user.setPassword('sade')
+    user.setPassword('sade');
     user.save(function(err) {
       if (err) {
-        console.log('error in saving', err);
+        return err;
       }
-      console.log('save');
     });
-    console.log('user created', user.id);
-    userId = user.id
+    userId = user.id;
     request
       .post('/documents')
       .set('Content-Type', 'application/json')
@@ -360,7 +354,7 @@ describe('POST /documents', function() {
       .end(function(err, res) {
         expect(err).toBeNull();
         expect(res.body).not.toBeNull();
-        expect(res.body.title).toBe('Contract')
+        expect(res.body.title).toBe('Contract');
         done();
       });
   });

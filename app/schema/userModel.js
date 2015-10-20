@@ -9,7 +9,8 @@ var mongoose = require("mongoose"),
 var userSchema = new Schema({
   username: {
     type: String,
-    required: 'Please enter username'
+    required: 'Please enter username',
+    unique: true
   },
   name: {
     first: {
@@ -31,7 +32,8 @@ var userSchema = new Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   salt: {
     type: String,
