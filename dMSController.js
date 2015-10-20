@@ -10,6 +10,8 @@ var User = mongoose.model('User'),
 
 
 module.exports = {
+
+  //Method checks for required fields, checks if user already exists, if not, creates new user
   createUser: function(req, res, next) {
     if (!req.body.name.first || !req.body.name.last || !req.body.email || !req.body.password || !req.body.username) {
       res.status(401).json({
@@ -53,6 +55,7 @@ module.exports = {
     });
   },
 
+  //Method returns all created users
   getAllUsers: function(req, res) {
     User.find({}, function(err, users) {
       if (err) {
@@ -65,6 +68,9 @@ module.exports = {
     });
   },
 
+  /*Method checks if for filled required fields, checks if user exists, if user exists,
+  it generates a token for the user
+  */
   login: function(req, res) {
     if (!req.body.username || !req.body.password) {
       return res.status(400).json({
@@ -98,6 +104,7 @@ module.exports = {
     });
   },
 
+  //Method logs out a user by destroying the session
   logout: function(req, res) {
     req.session.destroy(function(err, success) {
       if (err) {
@@ -112,6 +119,7 @@ module.exports = {
     });
   },
 
+  //Method finds a user by Id and returns the user object
   getUser: function(req, res) {
     User.findOne({
       _id: req.params.id
@@ -123,6 +131,7 @@ module.exports = {
     });
   },
 
+  //Method finds a user and updates by Id
   updateUser: function(req, res) {
     User.update({
       _id: req.params.id
@@ -140,6 +149,7 @@ module.exports = {
     });
   },
 
+  //Method finds a user and removes by Id
   deleteUser: function(req, res) {
     User.remove({
       _id: req.params.id
@@ -151,6 +161,9 @@ module.exports = {
     });
   },
 
+  /*Method creates a user, save the user id as the owner id
+  of the document to be created, then saves the docuent
+  */
   createDocument: function(req, res) {
     var userId;
     User.findOne({
@@ -182,6 +195,7 @@ module.exports = {
     });
   },
 
+  //Method returns all created documents
   getAllDocuments: function(req, res) {
     Document.find({}, function(err, docs) {
       if (err) {
@@ -194,6 +208,7 @@ module.exports = {
     });
   },
 
+  //Method finds a document by Id and returns it
   getDocument: function(req, res) {
     Document.findOne({
       _id: req.params.id
@@ -205,6 +220,7 @@ module.exports = {
     });
   },
 
+  //Method finds a document by Id and updates it
   updateDocument: function(req, res) {
     Document.update({
       _id: req.params.id
@@ -219,6 +235,7 @@ module.exports = {
     });
   },
 
+  //Method finds a document by Id and deletes it
   deleteDocument: function(req, res) {
     Document.findById(req.params.id)
       .remove(function(err, doc) {
@@ -232,6 +249,7 @@ module.exports = {
       });
   },
 
+  //Method gets all documents owned by a user and returns them
   getAllDocumentsbyUser: function(req, res) {
     Document.find({
         'ownerId': req.params.id
