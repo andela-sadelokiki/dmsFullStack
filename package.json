@@ -1,0 +1,24 @@
+{
+  "name": "dmsApiEndPoint",
+  "version": "1.0.0",
+  "description": "dmsApiEndPoint",
+  "main": "config.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine-node --captureExceptions dmsControllerSpec.js --forceexit",
+    "start": "node server.js"
+  },
+  "author": "Susan Adelokiki",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.1",
+    "crypto": "0.0.3",
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "jsonwebtoken": "^5.4.0",
+    "mongoose": "^4.1.11"
+  },
+  "devDependencies": {
+    "supertest": "^1.1.0"
+  }
+}
