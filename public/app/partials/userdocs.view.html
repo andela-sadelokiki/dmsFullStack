@@ -1,0 +1,33 @@
+<div ng-include="'app/partials/signedinNav.view.html'"></div>
+<md-content flex>
+  <div layout="row">
+    <div flex="25">
+      <div ng-include="'app/partials/sidenav.view.html'"></div>
+    </div>
+    <div flex="75">
+      <md-content layout-padding class="autoScroll">
+        <md-toolbar class="md-theme-light">
+          <h2 class="md-toolbar-tools">
+      <span>Your documents</span>
+    </h2>
+        </md-toolbar
+        <md-content>
+          <md-list ng-repeat="doc in userDocuments">
+            <md-list-item class="md-3-line">
+              <div class="md-list-item-text">
+                <h3>{{doc.title}}</h3>
+                <h4>{{doc.content}}</h4>
+                <h4><b>Created on {{doc.dateCreated}}</b></h4>
+              </div>
+              <md-button id="btn1" ng-href="#/updatedoc/{{$index}}" layout-align="center" class="md-raised md-primary">Edit</md-button>
+              <md-button ng-click="deleteDocument(doc)" class="md-raised md-warn">Delete</md-button>
+            </md-list-item>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list>
+        </md-content>
+      </md-content>
+    </div>
+    <!-- <div flex hide-sm>
+    </div> -->
+  </div>
+</md-content>

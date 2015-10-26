@@ -1,0 +1,33 @@
+<div layout="column" style="height:650px;" ng-cloak>
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">{{currentUser.username}}'s dashboard</h1>
+      </md-toolbar>
+      <md-content layout-padding>
+        <md-content>
+          <md-list>
+            <md-list-item class="md-3-line">
+              <div class="md-list-item-text">
+                <a class="quicklinks" ng-href="/#/createdoc">Create a document</a>
+              </div>
+              <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+            <md-list-item class="md-3-line">
+              <div class="md-list-item-text">
+                <a class="quicklinks" ng-href="#/viewdocs">View your documents</a>
+              </div>
+              <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+            <md-list-item class="md-3-line">
+              <div class="md-list-item-text">
+                <a class="quicklinks" ng-href="#/updateuser">Update Profile</a>
+              </div>
+              <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-content>
+    </md-sidenav>
+  </section>
+</div>

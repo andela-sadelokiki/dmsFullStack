@@ -1,0 +1,40 @@
+<md-content flex>
+  <div layout="row">
+    <div flex>
+      <div ng-include="'app/partials/sidenav.view.html'"></div>
+    </div>
+    <div flex>
+      <section class="md-whiteframe-z1">
+        <md-toolbar class="register">
+          <div layout-align="center center" class="md-toolbar-tools">
+            <h1 class="md-display-1">Edit Document</h1>
+          </div>
+        </md-toolbar>
+        <md-content layout-padding class="autoScroll">
+          <form name="createDoc">
+            <md-input-container class="md-icon-float">
+              <label>Title</label>
+              <input ng-model="doc.title">
+              <div ng-messages="createDoc.title.$error">
+                <div ng-message="required">*</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-icon-float">
+              <label>Content</label>
+              <input required name="content" ng-model="doc.content" type="content">
+              <div ng-messages="createDoc.content.$error">
+                <div ng-message="required">*</div>
+              </div>
+            </md-input-container>
+            <div layout="row" layout-align="center center">
+              <md-button id="btn1" class="md-raised md-primary" ng-disabled="createDoc.$invalid" ng-click="editDocument(doc)" layout-align="center start">Edit</md-button>
+              <md-button id="btn1" ng-href="#/viewdocs" class="md-raised md-primary" layout-align="center start">Cancel</md-button>
+            </div>
+          </form>
+        </md-content>
+      </section>
+    </div>
+    <div flex hide-sm>
+    </div>
+  </div>
+</md-content>

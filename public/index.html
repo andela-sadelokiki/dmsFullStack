@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dataHubApp">
+
+<head>
+  <title>dataHub</title>
+  <meta name="viewport" width="device-width" content="initial-scale=1" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="assets/css/angular-material.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="assets/css/angular-material-icons.css">
+  <link rel="stylesheet" type="text/css" href="assets/font-awesome-4.4.0 3/css/font-awesome.css">
+</head>
+
+<body>
+  <div ng-view style="height: auto; min-height: 100%"></div>
+  <div ng-include="'app/partials/footer.view.html'"></div>
+  <!-- Scripts -->
+  <script type="text/javascript" src="minifiedlibs/libraries.js"></script>
+  <!--Controllers -->
+  <script type="text/javascript" src="app/app.js"></script>
+  <script type="text/javascript" src="app/controllers/documentctrl.client.js"></script>
+  <script type="text/javascript" src="app/controllers/navctrl.client.js"></script>
+  <script type="text/javascript" src="app/controllers/userctrl.client.js"></script>
+  <!-- Services -->
+  <script type="text/javascript" src="app/services/baseurlservice.js"></script>
+  <script type="text/javascript" src="app/services/documentservice.js"></script>
+  <script type="text/javascript" src="app/services/userservice.js"></script>
+  <script type="text/javascript" src="app/services/toastservice.js"></script>
+</body>
+
+</html>

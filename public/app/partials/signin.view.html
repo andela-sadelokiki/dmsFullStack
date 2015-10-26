@@ -1,0 +1,38 @@
+<div ng-include="'app/partials/nav.view.html'"></div>
+<div layout="row">
+  <div flex>
+  </div>
+  <div flex>
+    <section class="md-whiteframe-z1 form">
+      <md-toolbar class="register">
+        <div layout-align="center center" class="md-toolbar-tools">
+          <h1 class="md-display-1">Login</h1>
+        </div>
+      </md-toolbar>
+      <md-content layout-padding class="autoScroll">
+        <form name="signinForm">
+          <md-input-container class="md-icon-float">
+            <label>Username</label>
+            <input required name="username" ng-model="user.username">
+            <div ng-messages="signupForm.username.$error">
+              <div ng-message="required">*</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-icon-float">
+            <label>Password</label>
+            <input required name="password" ng-model="user.password" type="password">
+            <div ng-messages="signupForm.password.$error">
+              <div ng-message="required">*</div>
+            </div>
+          </md-input-container>
+          <div layout="column" layout-align="center center">
+            <md-button id="btn1" ng-disabled="signinForm.$invalid" class="md-raised md-primary" ng-click="signIn()" layout-align="center start">Sign in</md-button>
+            <p>Don't have an account?<a href="#/signup">Sign Up</a></p>
+          </div>
+        </form>
+      </md-content>
+  </div>
+  </section>
+  <div flex hide-sm>
+  </div>
+</div>

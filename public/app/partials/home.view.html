@@ -1,0 +1,53 @@
+<div ng-include="'app/partials/nav.view.html'"></div>
+<div layout-align="center center">
+  <div class="hero" flex>
+    <div class="cover">
+      <div layout layout-align="center center" class="welcome">
+        <h2>Welcome to DataHub</h2></div>
+      <div layout layout-align="center center" class="get-started">
+        <md-button id="btn-welcome" class="md-raised md-primary" ng-href="#/signup">Get Started</md-button>
+      </div>
+    </div>
+  </div>
+  <div class="message" flex>
+    <div layout="column" layout-align="center center">
+      <h3>"Your documents are super safe with us"</h3>
+      <span>-Susan, Founder of DataHub</span>
+    </div>
+  </div>
+  <div layout="row" layout-padding class="features">
+    <div flex>
+      <md-card>
+        <ng-md-icon size="64" icon="my_library_books" style="fill: darkcyan"></ng-md-icon>
+        <md-card-content>
+          <h2 class="md-title">View Documents</h2>
+          <p class="sub-title">
+            At a dataHub, we give you free access to a wide range of documents for your viewing pleasure
+          </p>
+        </md-card-content>
+      </md-card>
+    </div>
+    <div flex>
+      <md-card>
+        <ng-md-icon size="64" icon="create" style="fill: darkcyan"></ng-md-icon>
+        <md-card-content>
+          <h2 class="md-title">Create Documents</h2>
+          <p class="sub-title">
+            Create as many documents as you want, and keep them all safe! How awesome!
+          </p>
+        </md-card-content>
+      </md-card>
+    </div>
+    <div flex hide-sm>
+      <md-card>
+        <ng-md-icon size="64" icon="attachment" style="fill: darkcyan"></ng-md-icon>
+        <md-card-content>
+          <h2 class="md-title">Manage your Documents</h2>
+          <p class="sub-title">
+            Datahub allows you manage and have control over all your added documents.
+          </p>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+</div>

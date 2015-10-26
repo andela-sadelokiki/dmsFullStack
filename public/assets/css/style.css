@@ -1,0 +1,104 @@
+* {
+  font-family: Roboto;
+}
+
+.md-toolbar-tools h1 {
+/*  font-size: inherit;
+*/  font-weight: inherit;
+  margin: inherit;
+}
+
+.md-toolbar-tools {
+  background-color: #292727;
+}
+
+#btn1 {
+  background-color: darkcyan;
+}
+
+section.md-whiteframe-z1 {
+  margin-top: 3em;
+}
+
+.md-toolbar-tools.register {
+  margin-bottom: 0.78em
+}
+
+.md-whiteframe {
+  background: #fff;
+  margin: 30px;
+  height: 100px;
+}
+
+md-toast {
+  background-color: green !important;
+  min-width: 15%;
+  text-align: center;
+}
+
+.nav {
+  position: fixed;
+}
+
+.hero {
+  height: 450px;
+  background-image: url("../images/Library.JPG");
+}
+
+.cover {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(250, 250, 250, 0.62);
+}
+
+.welcome {
+  padding-top: 15em;
+}
+
+#btn-welcome {
+  padding: .3em 3em;
+  background-color: darkcyan;
+}
+
+.message {
+  background-color: rgb(250, 250, 250);
+  height: 200px;
+  padding: 5% 0;
+}
+
+.md-title {
+  margin-top: 2em;
+  text-align: center;
+}
+
+.sub-title {
+  text-align: center;
+}
+
+.features {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+section.md-whiteframe-z1.form {
+  margin-top: 6em !important;
+}
+
+.doc {
+  overflow: scroll;
+  max-height: 650px !important;
+}
+
+.quicklinks {
+  width: 300px;
+  margin-right: 61px;
+}
+
+@media (max-width: 415px) {
+  .home {
+    font-size: 12px;
+  }
+
+  #title_home {
+    font-size: 16px;
+  }
+}
