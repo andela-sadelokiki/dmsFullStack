@@ -54,8 +54,6 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', function($ro
       redirectTo: '/'
     });
 
-  // $locationProvider.html5mode(true)
-
   $httpProvider.interceptors.push(['$q', '$location', '$window', function($q, $location, $window) {
     return {
       'request': function(config) {
@@ -86,7 +84,7 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', function($ro
       if (!($window.sessionStorage.token || $location.search().token)) {
         event.preventDefault();
         $window.sessionStorage.refUrl = $location.url();
-        $location.path('/signin'); //redirect to login if user is not authenitcated
+        $location.path('/signin');
       }
     }
   });

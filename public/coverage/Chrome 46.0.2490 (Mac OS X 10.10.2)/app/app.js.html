@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">45.45% </span>
+        <span class="strong">59.09% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/22</span>
+        <span class='fraction'>13/22</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">10% </span>
+        <span class="strong">55% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>2/20</span>
+        <span class='fraction'>11/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/6</span>
+        <span class='fraction'>5/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">45.45% </span>
+        <span class="strong">59.09% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/22</span>
+        <span class='fraction'>13/22</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -134,9 +134,7 @@
 89
 90
 91
-92
-93
-94</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+92</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -192,16 +190,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">22×</span>
-<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">22×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">26×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">27×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -215,13 +211,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">22×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -285,13 +281,11 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', function($ro
       redirectTo: '/'
     });
 &nbsp;
-  // $locationProvider.html5mode(true)
-&nbsp;
   $httpProvider.interceptors.push(['$q', '$location', '$window', function($q, $location, $window) {
     return {
       'request': function(config) {
         config.headers = config.headers || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
-        <span class="missing-if-branch" title="else path not taken" >E</span>if ($window.sessionStorage.token) {
+        if ($window.sessionStorage.token) {
           config.headers.Authorization = $window.sessionStorage.token;
         }
         return config;
@@ -307,17 +301,17 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', function($ro
 }])
 &nbsp;
 .run(['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
-  $rootScope.$on("$routeChangeStart", <span class="fstat-no" title="function not covered" >function(event, to) {</span>
-<span class="cstat-no" title="statement not covered" >    if ($window.sessionStorage.refUrl &amp;&amp; $window.sessionStorage.token) {</span>
+  $rootScope.$on("$routeChangeStart", function(event, to) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if ($window.sessionStorage.refUrl &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >$window.sessionStorage.token)</span> {
 <span class="cstat-no" title="statement not covered" >      var ref = $window.sessionStorage.refUrl;</span>
 <span class="cstat-no" title="statement not covered" >      $window.sessionStorage.removeItem('refUrl');</span>
 <span class="cstat-no" title="statement not covered" >      $location.url(ref);</span>
     }
-<span class="cstat-no" title="statement not covered" >    if (to.data &amp;&amp; to.data.requiresLogin) {</span>
-<span class="cstat-no" title="statement not covered" >      if (!($window.sessionStorage.token || $location.search().token)) {</span>
+    if (to.data &amp;&amp; to.data.requiresLogin) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!($window.sessionStorage.token || <span class="branch-1 cbranch-no" title="branch not covered" >$location.search().token)</span>) {
 <span class="cstat-no" title="statement not covered" >        event.preventDefault();</span>
 <span class="cstat-no" title="statement not covered" >        $window.sessionStorage.refUrl = $location.url();</span>
-<span class="cstat-no" title="statement not covered" >        $location.path('/signin'); </span>//redirect to login if user is not authenitcated
+<span class="cstat-no" title="statement not covered" >        $location.path('/signin');</span>
       }
     }
   });
@@ -328,7 +322,7 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', function($ro
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Oct 26 2015 23:35:40 GMT+0100 (WAT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 27 2015 00:15:22 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../prettify.js"></script>

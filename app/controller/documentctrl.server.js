@@ -12,7 +12,7 @@
  /*Method creates a user, save the user id as the owner id
   of the document to be created, then saves the docuent
   */
- // DocumentController.prototype.createDocument = function(req, res) {
+ DocumentController.prototype.createDocument = function(req, res) {
    var day = new Date();
    var currentDate = day.getDate() + '-' + day.getMonth() + '-' + day.getFullYear();
    var userId;

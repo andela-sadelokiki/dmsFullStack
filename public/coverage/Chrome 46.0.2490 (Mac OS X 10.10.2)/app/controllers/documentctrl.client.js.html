@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">69.23% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>18/26</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,26 +30,194 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>6/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">69.23% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>18/26</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
-<tr><td class="line-count quiet">1</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;</pre></td></tr>
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('dataHubApp')
+  .controller('DocumentCtrl', ['$scope', '$rootScope', 'DocumentService', 'UserService', '$location', '$window', '$routeParams', 'ToastService', '$route', '$mdDialog', function($scope, $rootScope, DocumentService, UserService, $location, $window, $routeParams, ToastService, $route, $mdDialog) {
+&nbsp;
+//This gets all douments created by a user by the user id which is saved in session storage
+    $scope.userDocuments = [];
+    var id = $window.sessionStorage.userId;
+    DocumentService.getAllDocumentsByUser(id).then(function(res) {
+      $scope.userDocuments = res;
+      $scope.doc = $scope.userDocuments[$routeParams.index];
+    }, <span class="fstat-no" title="function not covered" >function(err) {</span>});
+&nbsp;
+//This method creates a user by an http req and shows a Toast with success or error message
+    $scope.createDocument = function() {
+      DocumentService.createDocument($scope.doc).then(function(res) {
+        $scope.created = true;
+        $scope.userDocuments.push(res);
+        ToastService.showToast('Created successfully');
+        $location.path("/viewdocs");
+      }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >        ToastService.showToast('Document name already exists');</span>
+      });
+    };
+&nbsp;
+/*This method updates a document and redirects the user to '/viewdocs' page, it also
+shows a Toast with a success or error message
+*/
+    $scope.editDocument = function(doc) {
+      DocumentService.updateDocument(doc._id, doc).then(function(res) {
+        $rootScope.doc = res;
+        $location.path("/viewdocs");
+        ToastService.showToast('Document updated');
+      }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >        ToastService.showToast('An error occured');</span>
+      });
+    };
+&nbsp;
+//This method deletes a document and show a confirmation box
+    $scope.deleteDocument = <span class="fstat-no" title="function not covered" >function(doc) {</span>
+<span class="cstat-no" title="statement not covered" >      var confirm = $mdDialog.confirm()</span>
+        .title('Would you like to delete your Document?')
+        .content('You will loose all your data if you confirm this. If you clicked this accidentally. Please, click CANCEL to exit')
+        .ok('Please, Continue')
+        .cancel('CANCEL')
+        .targetEvent(doc);
+<span class="cstat-no" title="statement not covered" >      $mdDialog.show(confirm).then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        DocumentService.deleteDocument(doc._id).then(<span class="fstat-no" title="function not covered" >function(res) {</span></span>
+<span class="cstat-no" title="statement not covered" >          $route.reload();</span>
+<span class="cstat-no" title="statement not covered" >          ToastService.showToast('Document deleted');</span>
+<span class="cstat-no" title="statement not covered" >          $location.path("/viewdocs");</span>
+        });
+      });
+    };
+&nbsp;
+  }]);
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Oct 26 2015 23:35:40 GMT+0100 (WAT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 27 2015 00:15:22 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../prettify.js"></script>
