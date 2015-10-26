@@ -1,0 +1,23 @@
+{
+  "name": "dmsFullStack",
+  "version": "0.0.0",
+  "homepage": "https://github.com/andela-sadelokiki/dmsFullStack",
+  "authors": [
+    "Susan <susan.adelokiki@andela.co>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-material": "~0.11.4",
+    "angular-route": "~1.4.7",
+    "ngstorage": "~0.3.9",
+    "angular-mocks": "~1.4.7"
+  }
+}
